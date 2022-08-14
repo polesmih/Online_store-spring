@@ -89,11 +89,29 @@
             <td>Цена</td>
         </tr>
         <tbody>
+
         <tr ng-repeat="item in Cart.items">
+
+
             <td>{{item.title}}</td>
             <td>{{item.quantity}}</td>
             <td>{{item.pricePerProduct + ' x ' + item.quantity + ' = ' + item.price}}</td>
+
+            <tr ng-repeat="p in ProductsPage.content">
+
+            <td>
+                <button class="btn btn-outline-danger btn-sm" ng-click="removeFromCart(p.id)">Удалить из корзины</button>
+            </td>
+
+            <td>
+                <button class="btn btn-outline-warning btn-sm" ng-click="decreaseInCart(p.id)">Уменьшить</button>
+            </td>
+
+            </tr>
+
         </tr>
+
+
         <tr>
             <td></td>
             <td>Итого</td>

@@ -1,4 +1,4 @@
-angular.module('app', ['ngStorage']).controller('indexController', function ($scope, $rootScope, $http, $localStorage) {
+ angular.module('app', ['ngStorage']).controller('indexController', function ($scope, $rootScope, $http, $localStorage) {
     const contextPath = 'http://localhost:8189/app/api/v1';
 
     if(!$localStorage.cartName){
@@ -61,6 +61,23 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
                 $scope.loadCart();
             });
     }
+
+    // homework lesson 1
+     $scope.removeFromCart = function (productId) {
+            $http.post('http://localhost:8189/app/api/v1/carts/remove/' + productId, $localStorage.cartName)
+                .then(function (response) {
+                    $scope.loadCart();
+                });
+        }
+
+    $scope.decreaseInCart = function (productId) {
+            $http.post('http://localhost:8189/app/api/v1/carts/decrease/' + productId, $localStorage.cartName)
+                .then(function (response) {
+                    $scope.loadCart();
+                });
+        }
+
+
 
     $scope.loadCart = function () {
         $http.post('http://localhost:8189/app/api/v1/carts', $localStorage.cartName)

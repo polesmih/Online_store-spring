@@ -8,6 +8,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
+
 @Service
 @RequiredArgsConstructor
 public class CartService {
@@ -38,5 +39,18 @@ public class CartService {
         cart.clear();
         cacheManager.getCache("Cart").put(cartName, cart);
     }
+
+    // homework lesson 1
+    public void removeProductByIdFromCart(Long id, String cartName){
+            Cart cart = getCurrentCart(cartName);
+            cart.removeProduct(id);
+            cacheManager.getCache("Cart").put(cartName, cart);
+    }
+
+    public void decreaseProductByIdInCart(Long id, String cartName){
+        Cart cart = getCurrentCart(cartName);
+        cart.decreaseProduct(id);
+        cacheManager.getCache("Cart").put(cartName, cart);
+        }
 
 }
