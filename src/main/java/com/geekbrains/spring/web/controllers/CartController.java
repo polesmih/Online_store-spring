@@ -3,7 +3,6 @@ package com.geekbrains.spring.web.controllers;
 import com.geekbrains.spring.web.dto.Cart;
 import com.geekbrains.spring.web.services.CartService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.CacheManager;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,15 +26,5 @@ public class CartController {
         service.getCurrentCart(cartName).clear();
     }
 
-    // homework lesson 1
-    @PostMapping("/remove/{id}")
-    public void removeProductFromCart(@PathVariable Long id, @RequestBody String cartName){
-        service.removeProductByIdFromCart(id, cartName);
-    }
-
-    @PostMapping("/decrease/{id}")
-    public void decreaseProductInCart(@PathVariable Long id, @RequestBody String cartName){
-        service.decreaseProductByIdInCart(id, cartName);
-    }
 
 }
