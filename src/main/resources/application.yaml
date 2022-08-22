@@ -16,7 +16,18 @@ spring:
   h2:
     console:
       enabled: true
-
-other:
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
   cache:
-    cart: "Cart"
+    default:
+      expire-time: 700000000
+    user:
+      expire-time: 100
+      name: "Cart"
+
+#other:
+#  cache:
+#    cart: "Cart"

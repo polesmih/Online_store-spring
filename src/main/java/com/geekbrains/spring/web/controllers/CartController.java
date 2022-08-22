@@ -23,8 +23,7 @@ public class CartController {
 
     @PostMapping("/clear")
     public void clearCart(@RequestBody String cartName){
-        service.getCurrentCart(cartName).clear();
+        service.clear(cartName);
     }
-
 
 }
