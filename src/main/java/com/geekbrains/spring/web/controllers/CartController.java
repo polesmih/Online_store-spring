@@ -3,7 +3,6 @@ package com.geekbrains.spring.web.controllers;
 import com.geekbrains.spring.web.dto.Cart;
 import com.geekbrains.spring.web.services.CartService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.CacheManager;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,7 +23,7 @@ public class CartController {
 
     @PostMapping("/clear")
     public void clearCart(@RequestBody String cartName){
-        service.getCurrentCart(cartName).clear();
+        service.clear(cartName);
     }
 
 }
