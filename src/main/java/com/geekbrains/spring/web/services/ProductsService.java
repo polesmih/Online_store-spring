@@ -2,6 +2,7 @@ package com.geekbrains.spring.web.services;
 
 import com.geekbrains.spring.web.dto.ProductDto;
 import com.geekbrains.spring.web.entities.Product;
+import com.geekbrains.spring.web.entities.User;
 import com.geekbrains.spring.web.exceptions.ResourceNotFoundException;
 import com.geekbrains.spring.web.repositories.ProductsRepository;
 import com.geekbrains.spring.web.repositories.specifications.ProductsSpecifications;
@@ -12,6 +13,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -53,4 +55,10 @@ public class ProductsService {
         product.setTitle(productDto.getTitle());
         return product;
     }
+
+    public List<Product> findAllProducts(){
+        return productsRepository.findAll();
+    }
+
+
 }
