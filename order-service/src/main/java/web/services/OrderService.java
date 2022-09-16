@@ -9,8 +9,6 @@ import org.springframework.web.client.RestTemplate;
 import web.dto.OrderDto;
 import web.entities.Order;
 import web.entities.OrderItem;
-import web.entities.Product;
-import web.exceptions.ResourceNotFoundException;
 import web.repositories.OrderRepository;
 
 import javax.persistence.EntityManager;
@@ -22,10 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final ProductsService productsService;
     private final OrderRepository orderRepository;
-    private final RestTemplate cartTemplate;
-    private final EntityManager entityManager;
 
     @Value("${spring.kafka.topic}")
     private String topic;
@@ -45,15 +40,10 @@ public class OrderService {
                     orderItem.setQuantity(o.getQuantity());
                     orderItem.setPricePerProduct(o.getPricePerProduct());
                     orderItem.setPrice(o.getPrice());
-                    orderItem.setProduct(productsService.findById(o.getProductId()).orElseThrow(() -> new ResourceNotFoundException("Product not found")));
                     return orderItem;
                 }).collect(Collectors.toList());
         order.setItems(items);
         orderRepository.save(order);
-    }
-
-    public void save(Product someProduct){
-        productsService.save(someProduct);
     }
 
     public List<Order> findOrdersByUsername(String username) {
