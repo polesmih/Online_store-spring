@@ -18,6 +18,10 @@
                 templateUrl: 'orders/orders.html',
                 controller: 'orderController'
             })
+            .when('/order_pay/:orderId', {
+                templateUrl: 'order_pay/order_pay.html',
+                controller: 'orderPayController'
+            })
             .otherwise({
                 redirectTo: '/'
             });

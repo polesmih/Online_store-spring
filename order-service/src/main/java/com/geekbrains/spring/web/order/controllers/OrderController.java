@@ -5,6 +5,8 @@ import com.geekbrains.spring.web.order.converters.OrderConverter;
 import com.geekbrains.spring.web.order.dto.OrderDetailsDto;
 import com.geekbrains.spring.web.order.dto.OrderDto;
 import com.geekbrains.spring.web.order.services.OrderService;
+import com.qiwi.billpayments.sdk.client.BillPaymentClient;
+import com.qiwi.billpayments.sdk.model.out.BillResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,4 +45,12 @@ public class OrderController {
         return orderService.findOrdersByUsername(username).stream()
                 .map(orderConverter::entityToDto).collect(Collectors.toList());
     }
+
+    @Operation(description = "Получение заказа по ID")
+    @GetMapping("/{id}")
+    public OrderDto getOrderById(@RequestHeader Long id){
+        return orderConverter.entityToDto(orderService.findOrderById(id));
+    }
+
+
 }

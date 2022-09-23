@@ -23,14 +23,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class OrderService {
-
     private final OrderRepository orderRepository;
     @Autowired
     private ProductApi productApi;
-
     @Autowired
     private CartApi cartApi;
-
     @Transactional
     @KafkaListener(topics = "Orders")
     public void createOrder(ConsumerRecord<String, OrderDetailsDto> record){
@@ -68,4 +65,7 @@ public class OrderService {
         }
     }
 
+    public Order findOrderById(Long id) {
+        return orderRepository.findById(id).orElseThrow();
+    }
 }
