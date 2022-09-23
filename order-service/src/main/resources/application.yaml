@@ -1,0 +1,31 @@
+server:
+  port: 8186
+  servlet:
+    context-path: /web-market-order
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:mydatabase;MODE=PostgreSQL
+    username: sa
+    password:
+  kafka:
+    consumer:
+      group-id: 223
+    bootstrap-servers: localhost:9092
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+  qiwi:
+    secret: eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6IjE1YmpsNi0wMCIsInVzZXJfaWQiOiI3OTIxNzgyMzc2NCIsInNlY3JldCI6ImQwYmM5NTgyMzgxMGFjNjZhZGU3ODQ2OTg0OGI1YmIzNDNjZjFiNDEwZjUxNTAyZWVhNjk5NjNjODAxZmZjYmEifX0=
+    id: 48e7qUxn9T7RyYE1MVZswX1FRSbE6iyCj2gCRwwF3Dnh5XrasNTx3BGPiMsyXQFNKQhvukniQG8RTVhYm3iP3A9xoDFQj4PMdxLwqxNDMP6JmQcs1gKwZWDdZXuyVs8QF6KNyAjutyFWoydxGW92XUUY8ymtN7FB1BwtXZADDbLG8dCB2eeqz729dAhsa
+
+qiwi:
+  secret: eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6IjE1YmpsNi0wMCIsInVzZXJfaWQiOiI3OTIxNzgyMzc2NCIsInNlY3JldCI6ImQwYmM5NTgyMzgxMGFjNjZhZGU3ODQ2OTg0OGI1YmIzNDNjZjFiNDEwZjUxNTAyZWVhNjk5NjNjODAxZmZjYmEifX0=
+  id: 48e7qUxn9T7RyYE1MVZswX1FRSbE6iyCj2gCRwwF3Dnh5XrasNTx3BGPiMsyXQFNKQhvukniQG8RTVhYm3iP3A9xoDFQj4PMdxLwqxNDMP6JmQcs1gKwZWDdZXuyVs8QF6KNyAjutyFWoydxGW92XUUY8ymtN7FB1BwtXZADDbLG8dCB2eeqz729dAhsa
+
+
