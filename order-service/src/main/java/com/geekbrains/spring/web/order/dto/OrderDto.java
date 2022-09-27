@@ -8,14 +8,18 @@ import java.util.List;
 @Data
 public class OrderDto {
     private Long id;
-    @Schema(description = "Имя пользователя")
+    @Schema(description = "Имя пользователя", example = "Bob")
     private String username;
     @Schema(description = "Список продуктов")
     private List<OrderItemDto> itemDtoList;
-    @Schema(description = "Сумма заказа")
+    @Schema(description = "Сумма заказа", example = "200")
     private Integer totalPrice;
-    @Schema(description = "Адрес")
+    @Schema(description = "Адрес", example = "Ufa")
     private String address;
-    @Schema(description = "Телефон")
+    @Schema(description = "Контактный телефон", example = "89696969696")
     private String phone;
+    @Schema(description = "Номер заказа в QIWI")
+    private String billId;
+    @Schema(description = "Статус оплаты заказа", example = "COMPLETED")
+    private String status;
 }

@@ -1,10 +1,11 @@
-angular.module('market-front').controller('orderController', function ($scope, $rootScope, $http, $localStorage) {
+angular.module('market-front').controller('orderController', function ($scope, $rootScope, $http, $localStorage, $location) {
     const contextPath = 'http://localhost:5555/order/api/v1';
 
     $scope.loadOrders = function () {
         $http.get(contextPath + '/orders')
             .then(function (response) {
                 $scope.MyOrders = response.data;
+                $localStorage.MyOrders = response.data;
             });
     };
     $scope.loadCart = function () {
@@ -18,6 +19,9 @@ angular.module('market-front').controller('orderController', function ($scope, $
     {alert("Заполните детали заказа");}
     else {
         $http.post(contextPath + '/orders/' + $localStorage.cartName, $scope.orderDetailsDto
+//            url: contextPath + '/orders/' + $localStorage.cartName,
+//            method: 'POST',
+//            data: {$scope.orderDetailsDto}
         ).then(function (response) {
                 $scope.loadCart();
                 $scope.orderDetailsDto = null;
@@ -38,12 +42,17 @@ angular.module('market-front').controller('orderController', function ($scope, $
             }
         };
 
+//    $scope.goToPay = function(orderId) {
+//    $http.put('http://localhost:5555/order/api/v1/orders/qiwi/' + orderId)
+//        }
+
     $scope.goToPay = function (orderId) {
         $location.path('/order_pay/' + orderId);
-    }
+    };
 
     $scope.loadOrders();
     $scope.loadCart();
+
 
 
 });

@@ -7,8 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class OrderDetailsDto {
-    @Schema(description = "Адрес")
+    @Schema(description = "Адрес", example = "Ufa")
     private String address;
-    @Schema(description = "Телефон")
+    @Schema(description = "Телефон", example = "89696969969")
     private String phone;
+    @Schema(description = "Номер заказа")
+    private String billId;
+    @Schema(description = "Статус оплаты заказа", example = "COMPETED")
+    private String status;
 }

@@ -1,8 +1,8 @@
-angular.module('market-front').controller('orderPayController', function ($scope, $http, $location, $localStorage, $routeParams) {
+angular.module('market-front').controller('qiwiController', function ($scope, $http, $location, $localStorage, $routeParams) {
 
     $scope.loadOrder = function () {
         $http({
-            url: 'http://localhost:5555/gateway/api/v1/orders/' + $routeParams.orderId,
+            url: 'http://localhost:5555/order/api/v1/orders/' + $routeParams.orderId,
             method: 'GET'
         }).then(function (response) {
             $scope.order = response.data;
@@ -11,7 +11,7 @@ angular.module('market-front').controller('orderPayController', function ($scope
 
     $scope.renderPaymentButtons = function () {
         $http({
-            url: 'http://localhost:5555/gateway/api/v1/paypal/create/' + $scope.order.id,
+            url: 'http://localhost:5555/order/api/v1/qiwi/create/' + $scope.order.id,
             method: 'GET'
         }).then(function (response) {
             $scope.billid = response.data.billid;
@@ -23,7 +23,11 @@ angular.module('market-front').controller('orderPayController', function ($scope
             }
             QiwiCheckout.openInvoice(params)
                 .then(function (onFullField){
-                    $location.path("http://localhost:3000/front") // Заглушка. ToDo при корректной отправке платежа, необходимо отправить запрос на /capture/{billId} (billid уже задан в scope)
+                        $http.post('http://localhost:5555/order/api/v1/qiwi/capture/' + $scope.billid)
+                            .then(function (response) {
+                            $scope.status = response.data.status;
+                            });
+                     // Заглушка. ToDo при корректной отправке платежа, необходимо отправить запрос на /capture/{billId} (billid уже задан в scope)
                 })
                 .then(function (onRejection){
                     $location.path("http://localhost:3000/front")
@@ -31,8 +35,6 @@ angular.module('market-front').controller('orderPayController', function ($scope
 
         });
     };
-
-
 
     $scope.loadOrder();
 });
