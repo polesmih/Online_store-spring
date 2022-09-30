@@ -23,3 +23,4 @@ QIWI-кошелек
 Для онлайн-оплаты указать свой secret-key в микросервисе order-service/src/main/resources/secrets.properties
 Запустить все микросервисы.
 В браузере пройти по ссылке http://localhost:3000/front
+Визуализация страницы интернет-магазина: ![1234](https://user-images.githubusercontent.com/77875474/193206368-56fc14c4-4a4e-4852-a87f-421e18931f13.jpg)
